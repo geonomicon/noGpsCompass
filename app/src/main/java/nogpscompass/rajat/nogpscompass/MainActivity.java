@@ -14,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity implements SensorEventListener {
@@ -22,6 +23,8 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
     private float currentDegree = 0f;
     private SensorManager mSensorManager;
     TextView tvHeading;
+    TextView tvSensor;
+
 
 
     @Override
@@ -30,6 +33,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
         setContentView(R.layout.activity_main);
         image = (ImageView) findViewById(R.id.imageViewCompass);
         tvHeading = (TextView) findViewById(R.id.tvHeading);
+        tvSensor = (TextView) findViewById(R.id.tvSensor);
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
     }
     @Override
@@ -37,6 +41,13 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
         super.onResume();
         mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
                 SensorManager.SENSOR_DELAY_GAME);
+        Sensor countSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        if (countSensor != null) {
+            mSensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
+        } else {
+            Toast.makeText(this, "Count sensor not available!", Toast.LENGTH_LONG).show();
+            tvSensor.setText("Step Counter Sensor not Available");
+        }
     }
 
     @Override

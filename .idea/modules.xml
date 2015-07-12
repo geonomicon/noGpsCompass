@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/noGPScompass.iml" filepath="$PROJECT_DIR$/noGPScompass.iml" />
+      <module fileurl="file://$PROJECT_DIR$/noGpsCompass.iml" filepath="$PROJECT_DIR$/noGpsCompass.iml" />
     </modules>
   </component>
 </project>
